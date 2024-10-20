@@ -1,4 +1,4 @@
-package br.com.payment.application;
+package br.com.payment;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.ImportAutoConfiguration;

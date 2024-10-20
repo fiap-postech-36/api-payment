@@ -1,6 +1,6 @@
 spring:
   datasource:
-    url: ${SPRING_DATASOURCE_URL:jdbc:postgresql://localhost:5432/restaurant?useSSL=false}
+    url: ${SPRING_DATASOURCE_URL:jdbc:postgresql://localhost:27017/restaurant?useSSL=false}
     username: ${SPRING_DATASOURCE_USERNAME:postgres}
     password: ${SPRING_DATASOURCE_PASSWORD:postgres}
   flyway:
@@ -22,7 +22,7 @@ springdoc:
     path: /swagger-ui.html
 server:
   servlet:
-    context-path: /restaurant
+    context-path: /payment
 management:
   endpoint:
     health:

@@ -18,7 +18,7 @@ spec:
         - name: postgres
           image: postgres:15
           ports:
-            - containerPort: 5432
+            - containerPort: 27017
           envFrom:
             - configMapRef:
                 name: db-configmap

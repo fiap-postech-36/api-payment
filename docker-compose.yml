@@ -4,22 +4,16 @@ services:
     ports:
       - "8080:8080"
     environment:
-      - SPRING_DATASOURCE_URL=jdbc:postgresql://db:5432/restaurant
-      - SPRING_DATASOURCE_USERNAME=postgres
-      - SPRING_DATASOURCE_PASSWORD=postgres
+      - SPRING_DATA_MONGODB_URI=mongodb://usuario:senha@db:27017/restaurant
     depends_on:
       - db
 
   db:
-    image: postgres:15
-    environment:
-      - POSTGRES_DB=restaurant
-      - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=postgres
+    image: mongo:latest
     ports:
-      - "5432:5432"
+      - "27017:27017"
     volumes:
-      - postgres-data:/var/lib/postgresql/data
+      - mongodb-data:/data/db
 
 volumes:
-  postgres-data:
+  mongodb-data:
