@@ -1,6 +1,6 @@
 package br.com.payment.infra.entity;
 
-import br.com.payment.domain.core.domain.entities.StatusPayment;
+import br.com.payment.domain.core.domain.entities.internal.StatusPayment;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import lombok.AllArgsConstructor;

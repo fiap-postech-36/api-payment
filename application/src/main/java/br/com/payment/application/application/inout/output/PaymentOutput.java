@@ -1,6 +1,6 @@
 package br.com.payment.application.inout.output;
 
-import br.com.payment.domain.core.domain.entities.StatusPayment;
+import br.com.payment.domain.core.domain.entities.internal.StatusPayment;
 
 import java.math.BigDecimal;
 

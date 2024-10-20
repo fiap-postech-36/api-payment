@@ -1,6 +1,6 @@
 package br.com.payment.infra.feign.client;
 
-import br.com.payment.domain.core.domain.entities.QrCode;
+import br.com.payment.domain.core.domain.entities.external.QrCode;
 import br.com.payment.infra.feign.interceptor.MercadoPagoInterceptor;
 import br.com.payment.infra.feign.presenter.request.PaymentRequest;
 import org.springframework.cloud.openfeign.FeignClient;

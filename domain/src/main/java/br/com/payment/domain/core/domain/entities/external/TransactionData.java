@@ -1,4 +1,4 @@
-package br.com.payment.domain.core.domain.entities;
+package br.com.payment.domain.core.domain.entities.external;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;

@@ -2,7 +2,7 @@ package br.com.payment.application.usecase.payment;
 
 import br.com.payment.application.inout.input.FilterInput;
 import br.com.payment.application.usecase.UseCase;
-import br.com.payment.domain.core.domain.entities.Payment;
+import br.com.payment.domain.core.domain.entities.internal.Payment;
 import br.com.payment.domain.gateway.PaymentGateway;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;

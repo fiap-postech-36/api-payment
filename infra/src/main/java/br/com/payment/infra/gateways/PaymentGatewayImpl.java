@@ -1,6 +1,6 @@
 package br.com.payment.infra.gateways;
 
-import br.com.payment.domain.core.domain.entities.Payment;
+import br.com.payment.domain.core.domain.entities.internal.Payment;
 import br.com.payment.domain.gateway.PaymentGateway;
 import br.com.payment.infra.mapper.PaymentMapper;
 import br.com.payment.infra.repository.PaymentRepository;

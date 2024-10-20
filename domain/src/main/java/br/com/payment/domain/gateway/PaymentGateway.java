@@ -1,7 +1,7 @@
 package br.com.payment.domain.gateway;
 
 
-import br.com.payment.domain.core.domain.entities.Payment;
+import br.com.payment.domain.core.domain.entities.internal.Payment;
 
 import java.util.Collection;
 import java.util.Optional;

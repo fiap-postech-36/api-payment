@@ -1,4 +1,4 @@
-package br.com.payment.domain.core.domain.valueobjects;
+package br.com.payment.domain.core.domain.identifier;
 
 import br.com.payment.domain.core.exception.EmailInvalidException;
 

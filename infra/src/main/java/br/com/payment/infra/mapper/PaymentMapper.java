@@ -1,7 +1,7 @@
 package br.com.payment.infra.mapper;
 
 import br.com.payment.infra.entity.PaymentEntity;
-import br.com.payment.domain.core.domain.entities.Payment;
+import br.com.payment.domain.core.domain.entities.internal.Payment;
 import org.mapstruct.Mapper;
 import org.mapstruct.ReportingPolicy;
 import org.mapstruct.factory.Mappers;

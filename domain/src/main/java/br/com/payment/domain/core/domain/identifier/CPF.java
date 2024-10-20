@@ -1,4 +1,4 @@
-package br.com.payment.domain.core.domain.valueobjects;
+package br.com.payment.domain.core.domain.identifier;
 
 import java.io.Serializable;
 

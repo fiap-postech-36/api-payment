@@ -1,4 +1,4 @@
-package br.com.payment.domain.core.domain.entities;
+package br.com.payment.domain.core.domain.entities.internal;
 
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;

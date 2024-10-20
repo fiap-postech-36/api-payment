@@ -2,7 +2,7 @@ package br.com.payment.application.integration;
 
 import br.com.payment.application.exception.MercadoPagoIntegrationException;
 import br.com.payment.application.gateway.IntegrationLinkPaymentGateway;
-import br.com.payment.domain.core.domain.entities.QrCode;
+import br.com.payment.domain.core.domain.entities.external.QrCode;
 import br.com.payment.infra.feign.client.MercadoPagoQrCodeClient;
 import br.com.payment.infra.feign.presenter.request.PaymentRequest;
 import lombok.RequiredArgsConstructor;
