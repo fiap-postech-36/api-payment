@@ -12,9 +12,9 @@ import org.mapstruct.factory.Mappers;
 
 @Mapper(componentModel = "spring", unmappedTargetPolicy = ReportingPolicy.IGNORE, nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
 public interface PaymentInputOutputMapper {
+
     PaymentInputOutputMapper INSTANCE = Mappers.getMapper(PaymentInputOutputMapper.class);
 
-    @Mapping(source = "order", target = "order")
     Payment paymentRequestToPayment(final PaymentInput paymentInput);
 
     PaymentOutput paymentToPaymentResponse(final Payment payment);

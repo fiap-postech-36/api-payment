@@ -13,6 +13,8 @@ import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 
+import static java.util.Optional.ofNullable;
+
 @Service
 @RequiredArgsConstructor
 public class CreatePaymentUseCase implements UseCase<PaymentInput, Payment> {
@@ -23,23 +25,18 @@ public class CreatePaymentUseCase implements UseCase<PaymentInput, Payment> {
 
     @Override
     public Optional<Payment> execute(final PaymentInput paymentInput) {
-        Payment payment = PaymentInputOutputMapper.INSTANCE.paymentRequestToPayment(paymentInput);
 
-        payment.setStatusPending();
-        Optional<Payment> paymentGenerated = paymentGateway.save(payment);
+        Optional<Payment> paymentProcess = Optional.of(PaymentInputOutputMapper.INSTANCE.paymentRequestToPayment(paymentInput));
 
-        paymentGenerated.ifPresent(pay -> {
+/*        paymentProcess.ifPresent(pay -> {
             QrCode qrCode = integrationLinkPaymentGateway.generatedQrCode(
                 PaymentRequest.builder()
                     .description("order payment")
                     .paymentMethodId("pix")
-                    .transactionAmount(payment.getAmount())
-                    .build());
+                    .transactionAmount(paymentProcess.get().getAmount()).build());
+            paymentProcess.get().setQrCode(qrCode.getQrCode());
+        });*/
 
-            paymentGenerated.get().setQrCode(qrCode.getQrCode());
-
-        });
-
-        return paymentGenerated;
+        return paymentGateway.save(paymentProcess.get());
     }
 }

@@ -19,7 +19,7 @@ import java.time.LocalDateTime;
 public class PaymentEntity {
 
     @Id
-    private Long id;
+    private String id;
 
     private BigDecimal amount;
 
