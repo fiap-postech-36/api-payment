@@ -30,7 +30,7 @@ public class PaymentGatewayImpl implements PaymentGateway {
     }
 
     @Override
-    public Optional<Payment> findById(final Long id) {
+    public Optional<Payment> findById(final String id) {
         return Optional.ofNullable(mapper.paymentEntityToPayment(paymentRepository.findById(id).orElseThrow(() -> new RuntimeException("Payment not found"))));
     }
 

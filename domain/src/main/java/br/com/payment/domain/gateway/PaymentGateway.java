@@ -10,7 +10,7 @@ public interface PaymentGateway {
 
     Optional<Payment> save(final Payment payment);
     Optional<Payment> update(final Payment payment);
-    Optional<Payment> findById(final Long id);
+    Optional<Payment> findById(final String id);
     Collection<Payment> findAll();
 
 }

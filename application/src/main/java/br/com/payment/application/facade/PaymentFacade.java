@@ -34,7 +34,7 @@ public class PaymentFacade {
         return new PageImpl<>(content, page.getPageable(), page.getTotalElements());
     }
 
-    public PaymentBalanceOutput get(final Long id) {
+    public PaymentBalanceOutput get(final String id) {
         return PaymentInputOutputMapper.INSTANCE.paymentToPaymentBalanceOutput(getByIdPaymentUseCase.execute(id)
             .orElseThrow(NoResourceFoundException::new));
     }

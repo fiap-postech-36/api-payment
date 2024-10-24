@@ -11,7 +11,7 @@ import java.time.LocalDateTime;
 @EqualsAndHashCode
 public class Payment  implements Serializable {
 
-    private Long id;
+    private String id;
     private BigDecimal amount;
     private String client;
     private StatusPayment status;

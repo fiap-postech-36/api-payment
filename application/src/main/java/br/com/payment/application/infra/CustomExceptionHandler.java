@@ -1,5 +1,6 @@
 package br.com.payment.application.infra;
 
+import br.com.payment.application.exception.MercadoPagoIntegrationException;
 import br.com.payment.application.exception.ResourceNotFound;
 import br.com.payment.domain.core.exception.CoreExceptionNegocial;
 import br.com.payment.domain.core.exception.CoreExceptionRuntime;
@@ -56,6 +57,17 @@ public class CustomExceptionHandler extends ResponseEntityExceptionHandler {
         log.info(ex.getMessage());
         return createResponseEntity( new ApiErrorMessage(status, List.of(ex.getMessage())),
             new HttpHeaders(), HttpStatus.INTERNAL_SERVER_ERROR, request);
+    }
+
+    @ExceptionHandler(value = {
+            MercadoPagoIntegrationException.class
+    })
+    protected ResponseEntity<Object> mercadoPagoIntegrationException(
+            Exception ex, WebRequest request) {
+        HttpStatus status = HttpStatus.SERVICE_UNAVAILABLE;
+        log.info(ex.getMessage());
+        return createResponseEntity( new ApiErrorMessage(status, List.of(ex.getMessage())),
+                new HttpHeaders(), HttpStatus.SERVICE_UNAVAILABLE, request);
     }
 
     @ExceptionHandler(value = {

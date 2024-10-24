@@ -28,14 +28,14 @@ public class CreatePaymentUseCase implements UseCase<PaymentInput, Payment> {
 
         Optional<Payment> paymentProcess = Optional.of(PaymentInputOutputMapper.INSTANCE.paymentRequestToPayment(paymentInput));
 
-/*        paymentProcess.ifPresent(pay -> {
+        paymentProcess.ifPresent(pay -> {
             QrCode qrCode = integrationLinkPaymentGateway.generatedQrCode(
                 PaymentRequest.builder()
                     .description("order payment")
                     .paymentMethodId("pix")
                     .transactionAmount(paymentProcess.get().getAmount()).build());
             paymentProcess.get().setQrCode(qrCode.getQrCode());
-        });*/
+        });
 
         return paymentGateway.save(paymentProcess.get());
     }

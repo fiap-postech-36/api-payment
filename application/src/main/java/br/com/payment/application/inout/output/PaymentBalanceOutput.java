@@ -6,7 +6,7 @@ import java.math.BigDecimal;
 
 public record PaymentBalanceOutput(
 
-        Long id,
+        String id,
 
         BigDecimal amount,
 

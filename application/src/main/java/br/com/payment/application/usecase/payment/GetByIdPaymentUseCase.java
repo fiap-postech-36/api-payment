@@ -10,12 +10,12 @@ import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
-public class GetByIdPaymentUseCase implements UseCase<Long, Payment> {
+public class GetByIdPaymentUseCase implements UseCase<String, Payment> {
 
     private final PaymentGateway paymentGateway;
 
     @Override
-    public Optional<Payment> execute(final Long id) {
+    public Optional<Payment> execute(final String id) {
         return paymentGateway.findById(id);
     }
 }

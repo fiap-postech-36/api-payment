@@ -25,9 +25,9 @@ public class PaymentController {
         return ResponseEntity.ok(paymentFacade.create(request));
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<PaymentBalanceOutput> getPayment(@PathVariable Long id) {
-        return ResponseEntity.ok(paymentFacade.get(id));
+    @GetMapping("/{identifierPayment}")
+    public ResponseEntity<PaymentBalanceOutput> getPayment(@PathVariable String identifierPayment) {
+        return ResponseEntity.ok(paymentFacade.get(identifierPayment));
     }
     @GetMapping
     public ResponseEntity<Page<PaymentBalanceOutput>> getListPayments(@RequestParam(required = false) final Map<String, String> filter) {
