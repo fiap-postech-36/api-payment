@@ -1,10 +1,15 @@
 package br.com.payment.application.inout.input;
 
 
-public record PaymentUpdateInput(
+import br.com.payment.domain.core.domain.entities.internal.StatusPayment;
+import jakarta.validation.constraints.NotNull;
 
-       //TODO verificar id que passamos para o mercadopago para recuperar aqui e alterar o status da order
-        Long order,
-        Long idPayment
+public record PaymentUpdateInput (
+
+        @NotNull(message = "id payment must be provided")
+        String id,
+
+        @NotNull(message = "status must be provided")
+        StatusPayment status
 
 ){}

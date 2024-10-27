@@ -10,7 +10,7 @@ public record PaymentOutput(
 
         BigDecimal amount,
 
-        String client,
+        String cpf,
 
         String qrCode,
 

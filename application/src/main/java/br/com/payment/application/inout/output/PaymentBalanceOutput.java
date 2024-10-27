@@ -10,6 +10,8 @@ public record PaymentBalanceOutput(
 
         BigDecimal amount,
 
-        String client,
+        String cpf,
 
-        StatusPayment status){}
+        StatusPayment status,
+
+        String paymentAt){}

@@ -19,6 +19,7 @@ public interface PaymentInputOutputMapper {
 
     PaymentOutput paymentToPaymentResponse(final Payment payment);
 
+    @Mapping(source = "date", target = "paymentAt")
     PaymentBalanceOutput paymentToPaymentBalanceOutput(final Payment payment);
 
 }

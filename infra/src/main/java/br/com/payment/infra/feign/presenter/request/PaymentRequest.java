@@ -14,12 +14,15 @@ import java.math.BigDecimal;
 public class PaymentRequest {
 
     @JsonProperty("description")
-    private String description;
+    private final String description = "order payment - tech challenge group 36";
+
+    @JsonProperty("payment_method_id")
+    private final String paymentMethodId = "pix";
 
     @JsonProperty("transaction_amount")
     private BigDecimal transactionAmount;
 
-    @JsonProperty("payment_method_id")
-    private String paymentMethodId;
+    @JsonProperty("payer")
+    private PayerRequest payerRequest;
 
 }

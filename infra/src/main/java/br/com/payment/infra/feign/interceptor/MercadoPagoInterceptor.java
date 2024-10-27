@@ -12,7 +12,7 @@ public class MercadoPagoInterceptor {
     private static final String AUTHORIZATION_TOKEN = "Bearer TEST-2769775558422450-070119-8182adad088f0912cfd131f6c2d0ba2a-354315215";
 
     private static final String IDEMPOTENCY_KEY_HEADER = "X-Idempotency-Key";
-    private static final String IDEMPOTENCY_KEY = "0d5020ed-1af6-469c-ae06-c3bec19954ba";
+    private static final String IDEMPOTENCY_KEY = "0d5020ed-1af6-469c-ae06-c3bec19954bb";
 
     private static final String ACCEPT_HEADER = "accept";
     private static final String ACCEPT_TYPE = "application/json";

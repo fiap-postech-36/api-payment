@@ -7,6 +7,8 @@ import br.com.payment.application.usecase.UseCase;
 import br.com.payment.domain.core.domain.entities.internal.Payment;
 import br.com.payment.domain.core.domain.entities.external.QrCode;
 import br.com.payment.domain.gateway.PaymentGateway;
+import br.com.payment.infra.feign.presenter.request.IdentificationRequest;
+import br.com.payment.infra.feign.presenter.request.PayerRequest;
 import br.com.payment.infra.feign.presenter.request.PaymentRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -25,18 +27,33 @@ public class CreatePaymentUseCase implements UseCase<PaymentInput, Payment> {
 
     @Override
     public Optional<Payment> execute(final PaymentInput paymentInput) {
+        Payment payment = PaymentInputOutputMapper.INSTANCE.paymentRequestToPayment(paymentInput);
 
-        Optional<Payment> paymentProcess = Optional.of(PaymentInputOutputMapper.INSTANCE.paymentRequestToPayment(paymentInput));
+        generateQrCode(payment);
+        payment.setStatusPending();
 
-        paymentProcess.ifPresent(pay -> {
-            QrCode qrCode = integrationLinkPaymentGateway.generatedQrCode(
-                PaymentRequest.builder()
-                    .description("order payment")
-                    .paymentMethodId("pix")
-                    .transactionAmount(paymentProcess.get().getAmount()).build());
-            paymentProcess.get().setQrCode(qrCode.getQrCode());
-        });
+        return paymentGateway.save(payment);
+    }
 
-        return paymentGateway.save(paymentProcess.get());
+    private void generateQrCode(Payment payment) {
+        QrCode qrCode = integrationLinkPaymentGateway.generatedQrCode(
+                createPaymentRequest(payment)
+        );
+        payment.setQrCode(qrCode.getQrCode());
+    }
+
+    private PaymentRequest createPaymentRequest(Payment payment) {
+        return PaymentRequest.builder()
+                .transactionAmount(payment.getAmount())
+                .payerRequest(createPayerRequest(payment))
+                .build();
+    }
+
+    private PayerRequest createPayerRequest(Payment payment) {
+        return PayerRequest.builder()
+                .identificationRequest(IdentificationRequest.builder()
+                        .number(payment.getCpf())
+                        .build())
+                .build();
     }
 }

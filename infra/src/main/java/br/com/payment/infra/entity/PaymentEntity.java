@@ -2,6 +2,7 @@ package br.com.payment.infra.entity;
 
 import br.com.payment.domain.core.domain.entities.internal.StatusPayment;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -23,10 +24,13 @@ public class PaymentEntity {
 
     private BigDecimal amount;
 
-    private String client;
+    private String cpf;
+
+    private String qrCode;
 
     private StatusPayment status;
 
+    @Indexed(unique = true)
     private String order;
 
     private LocalDateTime paymentAt;

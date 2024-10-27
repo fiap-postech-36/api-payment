@@ -13,7 +13,7 @@ public class Payment  implements Serializable {
 
     private String id;
     private BigDecimal amount;
-    private String client;
+    private String cpf;
     private StatusPayment status;
     private String qrCode;
     private String order;
@@ -24,16 +24,9 @@ public class Payment  implements Serializable {
         this.status = StatusPayment.PENDING;
     }
 
-    public void setAmount(BigDecimal amount) {
-        this.amount = amount;
-    }
-
-    public void setStatusPaid() {
-        this.status = StatusPayment.PAID;
-    }
-
-    public void setStatusReject() {
-        this.status = StatusPayment.REJECT;
+    public void setProcessPayment(StatusPayment updateStatus) {
+        this.status = updateStatus;
+        this.date = LocalDateTime.now();
     }
 
     public void setQrCode(String qrCode) {

@@ -4,6 +4,7 @@ import br.com.payment.application.exception.MercadoPagoIntegrationException;
 import br.com.payment.application.exception.ResourceNotFound;
 import br.com.payment.domain.core.exception.CoreExceptionNegocial;
 import br.com.payment.domain.core.exception.CoreExceptionRuntime;
+import br.com.payment.infra.exception.PaymentNotFoundException;
 import jakarta.validation.ValidationException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.support.DefaultMessageSourceResolvable;
@@ -57,6 +58,17 @@ public class CustomExceptionHandler extends ResponseEntityExceptionHandler {
         log.info(ex.getMessage());
         return createResponseEntity( new ApiErrorMessage(status, List.of(ex.getMessage())),
             new HttpHeaders(), HttpStatus.INTERNAL_SERVER_ERROR, request);
+    }
+
+    @ExceptionHandler(value = {
+            PaymentNotFoundException.class
+    })
+    protected ResponseEntity<Object> paymentNotFoundException(
+            Exception ex, WebRequest request) {
+        HttpStatus status = HttpStatus.NOT_FOUND;
+        log.info(ex.getMessage());
+        return createResponseEntity( new ApiErrorMessage(status, List.of(ex.getMessage())),
+                new HttpHeaders(), HttpStatus.NOT_FOUND, request);
     }
 
     @ExceptionHandler(value = {
