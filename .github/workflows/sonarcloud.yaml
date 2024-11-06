@@ -45,3 +45,9 @@ jobs:
         env:
             GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
             SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+            run: |
+              mvn -B clean verify sonar:sonar \
+              -Dsonar.projectKey=fiap-postech-36_api-payment \
+              -Dsonar.organization=fiap-postech-36 \
+              -Dsonar.host.url=https://sonarcloud.io \
+              -Dsonar.login=${{ secrets.SONAR_TOKEN }}  # Pass the Sonar token here
