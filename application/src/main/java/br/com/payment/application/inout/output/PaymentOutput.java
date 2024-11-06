@@ -12,7 +12,7 @@ public record PaymentOutput(
 
         BigDecimal amount,
 
-        String cpf,
+        String identification,
 
         String qrCode,
 

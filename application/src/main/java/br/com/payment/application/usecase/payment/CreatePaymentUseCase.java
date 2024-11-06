@@ -35,7 +35,7 @@ public class CreatePaymentUseCase implements UseCase<PaymentInput, Payment> {
 
     private void generateQrCode(Payment payment) {
         QrCode qrCode = integrationLinkPaymentGateway.generatedQrCode(
-                payment.getCpf() != null ? createPaymentRequestWithIdentification(payment) : createPaymentRequestNotIdentification(payment)
+                payment.getIdentification() != null ? createPaymentRequestWithIdentification(payment) : createPaymentRequestNotIdentification(payment)
         );
         payment.setQrCode(qrCode.getQrCode());
     }
@@ -56,7 +56,7 @@ public class CreatePaymentUseCase implements UseCase<PaymentInput, Payment> {
     private PayerRequest createPayerRequest(Payment payment) {
         return PayerRequest.builder()
                 .identificationRequest(IdentificationRequest.builder()
-                        .number(payment.getCpf())
+                        .number(payment.getIdentification())
                         .build())
                 .build();
     }

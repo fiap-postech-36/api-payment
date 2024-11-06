@@ -3,7 +3,6 @@ package br.com.payment.application.inout.input;
 import jakarta.validation.constraints.DecimalMin;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Pattern;
 
 import java.math.BigDecimal;
 
@@ -18,6 +17,5 @@ public record PaymentInput(
         @DecimalMin(value = "0.01", message = "amount must be greater than 0")
         BigDecimal amount,
 
-        @Pattern(regexp = "\\d{11}", message = "CPF must contain 11 digits")
-        String cpf
+        String identification
 ){}
