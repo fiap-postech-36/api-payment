@@ -15,8 +15,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 
-import static java.util.Optional.ofNullable;
-
 @Service
 @RequiredArgsConstructor
 public class CreatePaymentUseCase implements UseCase<PaymentInput, Payment> {
