@@ -91,7 +91,7 @@ public class PaymentControllerTest {
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.id").value("507f191e810c19729de860ea"))
                 .andExpect(jsonPath("$.amount").value(15.0))
-                .andExpect(jsonPath("$.cpf").value("40798562475"))
+                .andExpect(jsonPath("$.identification").value("40798562475"))
                 .andExpect(jsonPath("$.status").value(StatusPayment.PENDING.name()));
     }
 
