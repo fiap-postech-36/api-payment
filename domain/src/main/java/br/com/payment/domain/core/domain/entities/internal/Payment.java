@@ -7,6 +7,7 @@ import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 @Getter
+@Builder
 @AllArgsConstructor
 @EqualsAndHashCode
 public class Payment  implements Serializable {
