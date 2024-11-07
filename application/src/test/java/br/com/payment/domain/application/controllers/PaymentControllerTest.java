@@ -2,6 +2,7 @@ package br.com.payment.domain.application.controllers;
 
 import br.com.payment.application.controllers.PaymentController;
 import br.com.payment.application.facade.PaymentFacade;
+import br.com.payment.application.inout.input.FilterInput;
 import br.com.payment.application.inout.input.PaymentInput;
 import br.com.payment.application.inout.input.PaymentUpdateInput;
 import br.com.payment.application.inout.output.PaymentBalanceOutput;
@@ -14,12 +15,19 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.springframework.core.io.ClassPathResource;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
+import java.math.BigDecimal;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.Collections;
+import java.util.List;
 
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyString;
@@ -135,5 +143,21 @@ public class PaymentControllerTest {
                 .andExpect(jsonPath("$.id").value("671d9e96f44cc326000548b3"))
                 .andExpect(jsonPath("$.amount").value(10.0))
                 .andExpect(jsonPath("$.status").value(StatusPayment.REJECT.name()));
+    }
+
+    @Test
+    void shouldReturnListOfPayments() throws Exception {
+
+        PaymentBalanceOutput payment = new PaymentBalanceOutput("12", BigDecimal.TEN, null, StatusPayment.PENDING, null); // Substitua com a instância correta
+        List<PaymentBalanceOutput> payments = Collections.singletonList(payment);
+        Page<PaymentBalanceOutput> paymentPage = new PageImpl<>(payments, PageRequest.of(0, 10), 1);
+
+        when(paymentFacade.filter(any(FilterInput.class))).thenReturn(paymentPage);
+
+        mockMvc.perform(MockMvcRequestBuilders.get("/api/v1/payment")
+                        .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.content").isArray())
+                .andExpect(jsonPath("$.content.length()").value(1));
     }
 }
