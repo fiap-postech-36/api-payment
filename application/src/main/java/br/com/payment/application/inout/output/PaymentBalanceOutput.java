@@ -12,7 +12,7 @@ public record PaymentBalanceOutput(
 
         BigDecimal amount,
 
-        String cpf,
+        String identification,
 
         StatusPayment status,
 

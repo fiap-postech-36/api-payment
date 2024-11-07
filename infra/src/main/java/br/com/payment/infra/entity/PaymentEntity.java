@@ -24,7 +24,7 @@ public class PaymentEntity {
 
     private BigDecimal amount;
 
-    private String cpf;
+    private String identification;
 
     private String qrCode;
 

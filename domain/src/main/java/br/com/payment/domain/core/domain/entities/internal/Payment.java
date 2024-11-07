@@ -13,7 +13,7 @@ public class Payment  implements Serializable {
 
     private String id;
     private BigDecimal amount;
-    private String cpf;
+    private String identification;
     private StatusPayment status;
     private String qrCode;
     private String order;
