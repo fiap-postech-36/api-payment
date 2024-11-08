@@ -1,4 +1,4 @@
-package br.com.payment.infra.domain.application;
+package br.com.payment.infra;
 
 import static org.junit.Assert.assertTrue;
 
