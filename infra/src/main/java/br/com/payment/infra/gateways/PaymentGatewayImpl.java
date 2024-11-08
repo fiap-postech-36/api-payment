@@ -2,7 +2,9 @@ package br.com.payment.infra.gateways;
 
 import br.com.payment.domain.core.domain.entities.internal.Payment;
 import br.com.payment.domain.gateway.PaymentGateway;
+import br.com.payment.infra.entity.PaymentEntity;
 import br.com.payment.infra.exception.PaymentNotFoundException;
+import br.com.payment.infra.feign.utils.MercadoPagoUtils;
 import br.com.payment.infra.mapper.PaymentMapper;
 import br.com.payment.infra.repository.PaymentRepository;
 import lombok.RequiredArgsConstructor;
@@ -32,7 +34,9 @@ public class PaymentGatewayImpl implements PaymentGateway {
 
     @Override
     public Optional<Payment> findById(final String id) {
-        return Optional.ofNullable(mapper.paymentEntityToPayment(paymentRepository.findById(id).orElseThrow(() -> new PaymentNotFoundException("Payment not found"))));
+        PaymentEntity payment = paymentRepository.findById(id).orElseThrow(() -> new PaymentNotFoundException("Payment not found"));
+        MercadoPagoUtils.validateQrCodeExpiration(payment.getPaymentAt());
+        return Optional.ofNullable(mapper.paymentEntityToPayment(payment));
     }
 
     @Override
