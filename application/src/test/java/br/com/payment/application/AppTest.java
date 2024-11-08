@@ -1,4 +1,4 @@
-package br.com.payment.domain;
+package br.com.payment.application;
 
 import org.junit.jupiter.api.Test;
 

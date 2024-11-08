@@ -1,4 +1,4 @@
-package br.com.payment.domain.facade;
+package br.com.payment.application.facade;
 
 import br.com.payment.application.exception.NoResourceFoundException;
 import br.com.payment.application.facade.PaymentFacade;

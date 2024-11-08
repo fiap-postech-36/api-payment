@@ -1,4 +1,4 @@
-package br.com.payment.domain.infra;
+package br.com.payment.application.infra;
 
 import br.com.payment.application.infra.ApiErrorMessage;
 import org.junit.jupiter.api.Test;
