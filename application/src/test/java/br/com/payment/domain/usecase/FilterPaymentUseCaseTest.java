@@ -1,4 +1,4 @@
-package br.com.payment.domain.application.usecase;
+package br.com.payment.domain.usecase;
 
 import br.com.payment.application.inout.input.FilterInput;
 import br.com.payment.application.usecase.payment.FilterPaymentUseCase;

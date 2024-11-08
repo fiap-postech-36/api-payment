@@ -1,4 +1,4 @@
-package br.com.payment.domain.application.integration;
+package br.com.payment.domain.integration;
 
 import br.com.payment.application.exception.MercadoPagoIntegrationException;
 import br.com.payment.application.integration.GeneratedQrCode;

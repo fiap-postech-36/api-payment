@@ -1,4 +1,4 @@
-package br.com.payment.domain.application.usecase;
+package br.com.payment.domain.usecase;
 
 import br.com.payment.application.inout.input.PaymentUpdateInput;
 import br.com.payment.domain.core.domain.entities.internal.Payment;
