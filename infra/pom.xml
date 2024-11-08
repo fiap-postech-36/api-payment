@@ -98,6 +98,7 @@
             <exclude>**/payment/infra/exception/</exclude>
             <exclude>**/payment/infra/feign/presenter/</exclude>
             <exclude>**/payment/infra/feign/utils/</exclude>
+            <exclude>**/payment/infra/feign/interceptor/</exclude>
             <exclude>**/payment/infra/mapper/</exclude>
           </excludes>
         </configuration>
