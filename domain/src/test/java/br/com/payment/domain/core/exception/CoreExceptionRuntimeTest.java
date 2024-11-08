@@ -1,6 +1,5 @@
-package br.com.payment.domain.core.domain.exception;
+package br.com.payment.domain.core.exception;
 
-import br.com.payment.domain.core.exception.CoreExceptionRuntime;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
