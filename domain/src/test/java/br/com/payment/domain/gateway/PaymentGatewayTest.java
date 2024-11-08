@@ -1,7 +1,8 @@
-package br.com.payment.domain.gateway;
+package br.com.payment.domain.core.domain.gateway;
 
 import br.com.payment.domain.core.domain.entities.internal.Payment;
 import br.com.payment.domain.core.domain.entities.internal.StatusPayment;
+import br.com.payment.domain.gateway.PaymentGateway;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;

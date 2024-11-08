@@ -1,4 +1,4 @@
-package br.com.payment.domain.core.exception;
+package br.com.payment.domain.exception;
 
 import br.com.payment.domain.core.exception.CoreExceptionRuntime;
 import org.junit.jupiter.api.Test;
