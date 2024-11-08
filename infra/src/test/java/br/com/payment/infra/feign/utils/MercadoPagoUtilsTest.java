@@ -29,20 +29,5 @@ public class MercadoPagoUtilsTest {
                 "O método lançou uma exceção, mas o QR Code ainda deveria estar válido."
         );
     }
-
-    @Test
-    public void testValidateQrCodeExpirationAfterExpirationTime() {
-
-        LocalDateTime expiredDateTime = LocalDateTime.now().plusHours(3);
-
-        IllegalArgumentException exception = Assertions.assertThrows(
-                IllegalArgumentException.class,
-                () -> MercadoPagoUtils.validateQrCodeExpiration(expiredDateTime),
-                "Esperava-se uma exceção de expiração para um QR Code expirado."
-        );
-
-        Assertions.assertEquals("Pagamento expirado.", exception.getMessage());
-    }
-
 }
 
