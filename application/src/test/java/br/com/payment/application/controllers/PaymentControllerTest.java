@@ -1,4 +1,4 @@
-package br.com.payment.domain.controllers;
+package br.com.payment.application.controllers;
 
 import br.com.payment.application.controllers.PaymentController;
 import br.com.payment.application.facade.PaymentFacade;

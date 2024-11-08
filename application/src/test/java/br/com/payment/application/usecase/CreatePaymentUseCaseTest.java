@@ -1,4 +1,4 @@
-package br.com.payment.domain.usecase;
+package br.com.payment.application.usecase;
 
 import br.com.payment.application.gateway.IntegrationLinkPaymentGateway;
 import br.com.payment.application.inout.input.PaymentInput;

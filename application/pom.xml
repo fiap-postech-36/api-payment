@@ -105,7 +105,6 @@
           <excludes>
             <exclude>**/inout/input/**</exclude>
             <exclude>**/inout/mapper/**</exclude>
-            <exclude>**/payment/application/exception/**</exclude>
             <exclude>**/br/com/payment/App.class</exclude>
           </excludes>
         </configuration>
