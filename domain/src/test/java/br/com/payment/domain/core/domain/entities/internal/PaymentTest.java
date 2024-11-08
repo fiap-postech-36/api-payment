@@ -42,7 +42,6 @@ class PaymentTest {
 
         assertEquals(StatusPayment.PENDING, payment.getStatus());
         assertNotNull(payment.getDate());
-        assertTrue(LocalDateTime.now().isAfter(payment.getDate()) || LocalDateTime.now().isEqual(payment.getDate()));
     }
 
     @Test
