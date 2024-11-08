@@ -126,6 +126,7 @@
                   <limits>
                     <limit>
                       <counter>LINE</counter>
+                      <mininum>0.70</mininum>
                     </limit>
                   </limits>
                 </rule>
