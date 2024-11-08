@@ -5,6 +5,8 @@ import org.junit.jupiter.api.Assertions;
 
 import java.time.LocalDateTime;
 
+import static org.junit.jupiter.api.Assertions.assertThrows;
+
 public class MercadoPagoUtilsTest {
 
     @Test
@@ -18,6 +20,14 @@ public class MercadoPagoUtilsTest {
                 expirationTime.isAfter(expectedMinTime) && expirationTime.isBefore(expectedMaxTime),
                 "A data de expiração está fora do intervalo esperado de 2 horas."
         );
+    }
+
+    @Test
+    public void testValidateQrCodeExpiration_Expired() {
+        LocalDateTime expirationTime = LocalDateTime.now().plusMinutes(300);
+
+        assertThrows(IllegalArgumentException.class, () -> MercadoPagoUtils.validateQrCodeExpiration(expirationTime),
+                "Pagamento expirado.");
     }
 
     @Test

@@ -13,7 +13,7 @@ public class MercadoPagoUtils {
         LocalDateTime now = LocalDateTime.now();
         Duration duration = Duration.between(now, dateTime);
 
-        if (duration.toHours() > 2) {
+        if (duration.toMinutes() > 120) {
             throw new IllegalArgumentException("Pagamento expirado.");
         }
     }
