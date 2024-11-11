@@ -39,7 +39,7 @@ Caso não queira bloquear o console, adicione a flag **-d** ao final do comando
 
 3. Após a instalação, a documentação Swagger da API pode encontrada no seguinte link:
 
-[http://localhost:8080/restaurant/swagger-ui/index.html](http://localhost:8080/restaurant/swagger-ui/index.html)
+[http://localhost:8080/payment/swagger-ui/index.html#/](http://localhost:8080/restaurant/swagger-ui/index.html)
 
 
 ## Instalação usando Kubernetes
