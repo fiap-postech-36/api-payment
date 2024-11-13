@@ -1,6 +1,7 @@
 package br.com.payment.application.facade;
 
 import br.com.payment.application.exception.NoResourceFoundException;
+import br.com.payment.application.infra.RabbitMQConfig;
 import br.com.payment.application.inout.input.FilterInput;
 import br.com.payment.application.inout.input.PaymentInput;
 import br.com.payment.application.inout.input.PaymentUpdateInput;
@@ -9,6 +10,7 @@ import br.com.payment.application.inout.output.PaymentBalanceOutput;
 import br.com.payment.application.inout.output.PaymentOutput;
 import br.com.payment.application.usecase.payment.*;
 import lombok.RequiredArgsConstructor;
+import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.stereotype.Component;
@@ -45,5 +47,4 @@ public class PaymentFacade {
         return PaymentInputOutputMapper.INSTANCE.paymentToPaymentBalanceOutput(getByIdPaymentUseCase.execute(id)
             .orElseThrow(NoResourceFoundException::new));
     }
-
 }
