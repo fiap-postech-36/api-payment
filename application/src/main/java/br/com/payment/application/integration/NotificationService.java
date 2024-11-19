@@ -14,9 +14,8 @@ public class NotificationService {
 
     private final PaymentFacade paymentFacade;
 
-    @RabbitListener(queues = RabbitMQConfig.QUEUE_NAME)
+    @RabbitListener(queues = RabbitMQConfig.ORDER_QUEUE_NAME)
     public void receiveMessage(OrderRabbitInput orderRabbitInput) {
-        System.out.println("Notificação recebida: " + orderRabbitInput.id() + " - " + orderRabbitInput.price());
         paymentFacade.create(new PaymentInput(orderRabbitInput.id(), orderRabbitInput.price(), ""));
     }
 }
