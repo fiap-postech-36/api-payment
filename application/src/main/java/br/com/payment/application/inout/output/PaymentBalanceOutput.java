@@ -16,4 +16,5 @@ public record PaymentBalanceOutput(
 
         StatusPayment status,
 
-        String paymentAt){}
+        String paymentAt,
+        String order){}

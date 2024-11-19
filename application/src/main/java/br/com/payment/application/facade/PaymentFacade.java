@@ -1,16 +1,17 @@
 package br.com.payment.application.facade;
 
 import br.com.payment.application.exception.NoResourceFoundException;
-import br.com.payment.application.infra.RabbitMQConfig;
 import br.com.payment.application.inout.input.FilterInput;
 import br.com.payment.application.inout.input.PaymentInput;
 import br.com.payment.application.inout.input.PaymentUpdateInput;
 import br.com.payment.application.inout.mapper.PaymentInputOutputMapper;
 import br.com.payment.application.inout.output.PaymentBalanceOutput;
 import br.com.payment.application.inout.output.PaymentOutput;
-import br.com.payment.application.usecase.payment.*;
+import br.com.payment.application.usecase.payment.CreatePaymentUseCase;
+import br.com.payment.application.usecase.payment.FilterPaymentUseCase;
+import br.com.payment.application.usecase.payment.GetByIdPaymentUseCase;
+import br.com.payment.application.usecase.payment.UpdateProcessPaymentCase;
 import lombok.RequiredArgsConstructor;
-import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.stereotype.Component;
@@ -37,14 +38,14 @@ public class PaymentFacade {
     public Page<PaymentBalanceOutput> filter(final FilterInput filterInput) {
         final var page = filterPaymentUseCase.execute(filterInput).orElse(Page.empty());
         final var content = page.getContent().stream()
-            .map(PaymentInputOutputMapper.INSTANCE::paymentToPaymentBalanceOutput)
-            .toList();
+                .map(PaymentInputOutputMapper.INSTANCE::paymentToPaymentBalanceOutput)
+                .toList();
 
         return new PageImpl<>(content, page.getPageable(), page.getTotalElements());
     }
 
     public PaymentBalanceOutput getPayment(final String id) {
         return PaymentInputOutputMapper.INSTANCE.paymentToPaymentBalanceOutput(getByIdPaymentUseCase.execute(id)
-            .orElseThrow(NoResourceFoundException::new));
+                .orElseThrow(NoResourceFoundException::new));
     }
 }

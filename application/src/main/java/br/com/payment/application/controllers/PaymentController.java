@@ -21,11 +21,6 @@ public class PaymentController {
 
     private final PaymentFacade paymentFacade;
 
-    @PostMapping
-    public ResponseEntity<PaymentOutput> generatePayment(@RequestBody @Valid PaymentInput request) {
-        return ResponseEntity.ok(paymentFacade.create(request));
-    }
-
     @PutMapping
     public ResponseEntity<PaymentOutput> updatePayment(@RequestBody @Valid PaymentUpdateInput request) {
         return ResponseEntity.ok(paymentFacade.updateProcessPayment(request));
