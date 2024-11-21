@@ -148,7 +148,7 @@ public class PaymentControllerTest {
     @Test
     void shouldReturnListOfPayments() throws Exception {
 
-        PaymentBalanceOutput payment = new PaymentBalanceOutput("12", BigDecimal.TEN, null, StatusPayment.PENDING, null); // Substitua com a instância correta
+        PaymentBalanceOutput payment = new PaymentBalanceOutput("12", BigDecimal.TEN, null, StatusPayment.PENDING, null, "1"); // Substitua com a instância correta
         List<PaymentBalanceOutput> payments = Collections.singletonList(payment);
         Page<PaymentBalanceOutput> paymentPage = new PageImpl<>(payments, PageRequest.of(0, 10), 1);
 
