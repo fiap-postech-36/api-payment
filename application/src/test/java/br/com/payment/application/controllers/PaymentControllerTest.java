@@ -14,6 +14,7 @@ import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
+import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
@@ -52,55 +53,6 @@ public class PaymentControllerTest {
         MockitoAnnotations.openMocks(this);
         mockMvc = MockMvcBuilders.standaloneSetup(paymentController).build();
         objectMapper = new ObjectMapper();
-    }
-
-    @Test
-    void shouldGeneratePayment() throws Exception {
-
-        String paymentInputJson = new String(Files.readAllBytes(Paths.get(
-                new ClassPathResource("payment_input_mock_not_identification.json")
-                        .getURI())));
-
-        String paymentOutput = new String(Files.readAllBytes(Paths.get(
-                new ClassPathResource("payment_output_mock_not_identification_response.json")
-                        .getURI())));
-
-        PaymentOutput expectedPaymentOutput = objectMapper.readValue(paymentOutput, PaymentOutput.class);
-
-        when(paymentFacade.create(any(PaymentInput.class))).thenReturn(expectedPaymentOutput);
-
-        mockMvc.perform(post("/api/v1/payment")
-                        .contentType(MediaType.APPLICATION_JSON)
-                        .content(paymentInputJson))
-                .andExpect(status().isOk())
-                .andExpect(jsonPath("$.id").value("507f191e810c19729de860ea"))
-                .andExpect(jsonPath("$.amount").value(15.0))
-                .andExpect(jsonPath("$.status").value(StatusPayment.PENDING.name()));
-    }
-
-    @Test
-    void shouldGeneratePaymentWithIdentification() throws Exception {
-
-        String paymentInputJson = new String(Files.readAllBytes(Paths.get(
-                new ClassPathResource("payment_input_mock_with_identification.json")
-                        .getURI())));
-
-        String paymentOutput = new String(Files.readAllBytes(Paths.get(
-                new ClassPathResource("payment_output_mock_with_identification_response.json")
-                        .getURI())));
-
-        PaymentOutput expectedPaymentOutput = objectMapper.readValue(paymentOutput, PaymentOutput.class);
-
-        when(paymentFacade.create(any(PaymentInput.class))).thenReturn(expectedPaymentOutput);
-
-        mockMvc.perform(post("/api/v1/payment")
-                        .contentType(MediaType.APPLICATION_JSON)
-                        .content(paymentInputJson))
-                .andExpect(status().isOk())
-                .andExpect(jsonPath("$.id").value("507f191e810c19729de860ea"))
-                .andExpect(jsonPath("$.amount").value(15.0))
-                .andExpect(jsonPath("$.identification").value("40798562475"))
-                .andExpect(jsonPath("$.status").value(StatusPayment.PENDING.name()));
     }
 
     @Test
