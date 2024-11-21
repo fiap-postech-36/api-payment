@@ -1,9 +1,7 @@
 package br.com.payment.application.controllers;
 
-import br.com.payment.application.controllers.PaymentController;
 import br.com.payment.application.facade.PaymentFacade;
 import br.com.payment.application.inout.input.FilterInput;
-import br.com.payment.application.inout.input.PaymentInput;
 import br.com.payment.application.inout.input.PaymentUpdateInput;
 import br.com.payment.application.inout.output.PaymentBalanceOutput;
 import br.com.payment.application.inout.output.PaymentOutput;
@@ -14,7 +12,6 @@ import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
@@ -32,9 +29,11 @@ import java.util.List;
 
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyString;
-import static org.mockito.Mockito.*;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
+import static org.mockito.Mockito.when;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 public class PaymentControllerTest {
 
@@ -63,7 +62,7 @@ public class PaymentControllerTest {
                         .getURI())));
 
         String paymentOutput = new String(Files.readAllBytes(Paths.get(
-                        new ClassPathResource("update_output_payment_mock.json")
+                new ClassPathResource("update_output_payment_mock.json")
                         .getURI())));
 
         PaymentOutput expectedPaymentOutput = objectMapper.readValue(paymentOutput, PaymentOutput.class);

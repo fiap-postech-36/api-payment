@@ -2,7 +2,6 @@ package br.com.payment.application.controllers;
 
 import br.com.payment.application.facade.PaymentFacade;
 import br.com.payment.application.inout.input.FilterInput;
-import br.com.payment.application.inout.input.PaymentInput;
 import br.com.payment.application.inout.input.PaymentUpdateInput;
 import br.com.payment.application.inout.output.PaymentBalanceOutput;
 import br.com.payment.application.inout.output.PaymentOutput;
