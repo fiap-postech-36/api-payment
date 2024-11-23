@@ -16,4 +16,5 @@ public record PaymentOutput(
 
         String qrCode,
 
-        StatusPayment status){}
+        StatusPayment status,
+        String order){}

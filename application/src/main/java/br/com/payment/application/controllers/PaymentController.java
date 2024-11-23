@@ -2,7 +2,6 @@ package br.com.payment.application.controllers;
 
 import br.com.payment.application.facade.PaymentFacade;
 import br.com.payment.application.inout.input.FilterInput;
-import br.com.payment.application.inout.input.PaymentInput;
 import br.com.payment.application.inout.input.PaymentUpdateInput;
 import br.com.payment.application.inout.output.PaymentBalanceOutput;
 import br.com.payment.application.inout.output.PaymentOutput;
@@ -20,11 +19,6 @@ import java.util.Map;
 public class PaymentController {
 
     private final PaymentFacade paymentFacade;
-
-    @PostMapping
-    public ResponseEntity<PaymentOutput> generatePayment(@RequestBody @Valid PaymentInput request) {
-        return ResponseEntity.ok(paymentFacade.create(request));
-    }
 
     @PutMapping
     public ResponseEntity<PaymentOutput> updatePayment(@RequestBody @Valid PaymentUpdateInput request) {

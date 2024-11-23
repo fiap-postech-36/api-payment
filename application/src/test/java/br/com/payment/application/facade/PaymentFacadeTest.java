@@ -1,7 +1,6 @@
 package br.com.payment.application.facade;
 
 import br.com.payment.application.exception.NoResourceFoundException;
-import br.com.payment.application.facade.PaymentFacade;
 import br.com.payment.application.inout.input.FilterInput;
 import br.com.payment.application.inout.input.PaymentInput;
 import br.com.payment.application.inout.input.PaymentUpdateInput;
@@ -19,6 +18,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
+import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.data.domain.Page;
 
 import java.math.BigDecimal;
@@ -47,6 +47,9 @@ class PaymentFacadeTest {
     @Mock
     private UpdateProcessPaymentCase updateProcessPaymentCase;
 
+    @Mock
+    private RabbitTemplate rabbitTemplate;
+
     @BeforeEach
     void setUp() {
         MockitoAnnotations.openMocks(this);
@@ -58,12 +61,12 @@ class PaymentFacadeTest {
 
         when(createPaymentUseCase.execute(any(PaymentInput.class)))
                 .thenReturn(Optional.of(Payment.builder()
-                                .id("123")
-                                .amount(BigDecimal.valueOf(10.0))
-                                .order("1")
-                                .status(StatusPayment.PENDING)
-                                .qrCode("qrcode")
-                                .date(LocalDateTime.now())
+                        .id("123")
+                        .amount(BigDecimal.valueOf(10.0))
+                        .order("1")
+                        .status(StatusPayment.PENDING)
+                        .qrCode("qrcode")
+                        .date(LocalDateTime.now())
                         .build()));
 
         PaymentOutput result = paymentFacade.create(paymentInput);
@@ -96,6 +99,7 @@ class PaymentFacadeTest {
         assertEquals(StatusPayment.PAID, result.status());
 
         verify(updateProcessPaymentCase, times(1)).execute(any(PaymentUpdateInput.class));
+        verify(rabbitTemplate, times(1)).convertAndSend(anyString(), anyString(), anyString());
     }
 
     @Test

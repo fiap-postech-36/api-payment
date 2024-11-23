@@ -1,9 +1,7 @@
 package br.com.payment.application.controllers;
 
-import br.com.payment.application.controllers.PaymentController;
 import br.com.payment.application.facade.PaymentFacade;
 import br.com.payment.application.inout.input.FilterInput;
-import br.com.payment.application.inout.input.PaymentInput;
 import br.com.payment.application.inout.input.PaymentUpdateInput;
 import br.com.payment.application.inout.output.PaymentBalanceOutput;
 import br.com.payment.application.inout.output.PaymentOutput;
@@ -31,9 +29,11 @@ import java.util.List;
 
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyString;
-import static org.mockito.Mockito.*;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
+import static org.mockito.Mockito.when;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 public class PaymentControllerTest {
 
@@ -55,55 +55,6 @@ public class PaymentControllerTest {
     }
 
     @Test
-    void shouldGeneratePayment() throws Exception {
-
-        String paymentInputJson = new String(Files.readAllBytes(Paths.get(
-                new ClassPathResource("payment_input_mock_not_identification.json")
-                        .getURI())));
-
-        String paymentOutput = new String(Files.readAllBytes(Paths.get(
-                new ClassPathResource("payment_output_mock_not_identification_response.json")
-                        .getURI())));
-
-        PaymentOutput expectedPaymentOutput = objectMapper.readValue(paymentOutput, PaymentOutput.class);
-
-        when(paymentFacade.create(any(PaymentInput.class))).thenReturn(expectedPaymentOutput);
-
-        mockMvc.perform(post("/api/v1/payment")
-                        .contentType(MediaType.APPLICATION_JSON)
-                        .content(paymentInputJson))
-                .andExpect(status().isOk())
-                .andExpect(jsonPath("$.id").value("507f191e810c19729de860ea"))
-                .andExpect(jsonPath("$.amount").value(15.0))
-                .andExpect(jsonPath("$.status").value(StatusPayment.PENDING.name()));
-    }
-
-    @Test
-    void shouldGeneratePaymentWithIdentification() throws Exception {
-
-        String paymentInputJson = new String(Files.readAllBytes(Paths.get(
-                new ClassPathResource("payment_input_mock_with_identification.json")
-                        .getURI())));
-
-        String paymentOutput = new String(Files.readAllBytes(Paths.get(
-                new ClassPathResource("payment_output_mock_with_identification_response.json")
-                        .getURI())));
-
-        PaymentOutput expectedPaymentOutput = objectMapper.readValue(paymentOutput, PaymentOutput.class);
-
-        when(paymentFacade.create(any(PaymentInput.class))).thenReturn(expectedPaymentOutput);
-
-        mockMvc.perform(post("/api/v1/payment")
-                        .contentType(MediaType.APPLICATION_JSON)
-                        .content(paymentInputJson))
-                .andExpect(status().isOk())
-                .andExpect(jsonPath("$.id").value("507f191e810c19729de860ea"))
-                .andExpect(jsonPath("$.amount").value(15.0))
-                .andExpect(jsonPath("$.identification").value("40798562475"))
-                .andExpect(jsonPath("$.status").value(StatusPayment.PENDING.name()));
-    }
-
-    @Test
     void shouldUpdatePayment() throws Exception {
 
         String paymentUpdateInput = new String(Files.readAllBytes(Paths.get(
@@ -111,7 +62,7 @@ public class PaymentControllerTest {
                         .getURI())));
 
         String paymentOutput = new String(Files.readAllBytes(Paths.get(
-                        new ClassPathResource("update_output_payment_mock.json")
+                new ClassPathResource("update_output_payment_mock.json")
                         .getURI())));
 
         PaymentOutput expectedPaymentOutput = objectMapper.readValue(paymentOutput, PaymentOutput.class);
@@ -148,7 +99,7 @@ public class PaymentControllerTest {
     @Test
     void shouldReturnListOfPayments() throws Exception {
 
-        PaymentBalanceOutput payment = new PaymentBalanceOutput("12", BigDecimal.TEN, null, StatusPayment.PENDING, null); // Substitua com a instância correta
+        PaymentBalanceOutput payment = new PaymentBalanceOutput("12", BigDecimal.TEN, null, StatusPayment.PENDING, null, "1"); // Substitua com a instância correta
         List<PaymentBalanceOutput> payments = Collections.singletonList(payment);
         Page<PaymentBalanceOutput> paymentPage = new PageImpl<>(payments, PageRequest.of(0, 10), 1);
 
