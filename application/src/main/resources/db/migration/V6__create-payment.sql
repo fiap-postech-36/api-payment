@@ -1,4 +1,4 @@
-CREATE TABLE IF NOT EXISTS payment(
+CREATE TABLE IF NOT EXISTS orderStatusControl(
 
     id SERIAL PRIMARY KEY,
     order_id SERIAL not null,
@@ -8,4 +8,4 @@ CREATE TABLE IF NOT EXISTS payment(
     payment_at timestamp(6)
 );
 
-ALTER TABLE payment ADD CONSTRAINT fk_payment_order_id FOREIGN KEY (order_id) REFERENCES ordered(id);
+ALTER TABLE orderStatusControl ADD CONSTRAINT fk_payment_order_id FOREIGN KEY (order_id) REFERENCES ordered(id);
