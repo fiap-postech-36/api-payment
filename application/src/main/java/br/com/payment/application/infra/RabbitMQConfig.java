@@ -14,7 +14,7 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class RabbitMQConfig {
 
-    public static final String ORDER_QUEUE_NAME = "order_direct_queue";
+    public static final String ORDER_QUEUE_NAME = "order_payment_direct_queue";
     public static final String PAYMENT_QUEUE_NAME = "payment_direct_queue";
     public static final String PAYMENT_EXCHANGE_NAME = "payment_direct_exchange";
     public static final String PAYMENT_KEY_NAME = "payment_direct_key";
