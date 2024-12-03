@@ -31,8 +31,8 @@ public class CustomExceptionHandler extends ResponseEntityExceptionHandler {
         ValidationException.class,
         CoreExceptionNegocial.class,
         CoreExceptionRuntime.class})
-    protected ResponseEntity<Object> handleBadRequest(
-        Exception ex, WebRequest request) {
+    public ResponseEntity<Object> handleBadRequest(
+            Exception ex, WebRequest request) {
 
         HttpStatus status = HttpStatus.BAD_REQUEST;
         List<String> errors = Collections.singletonList(ex.getMessage());
@@ -52,8 +52,8 @@ public class CustomExceptionHandler extends ResponseEntityExceptionHandler {
     @ExceptionHandler(value = {
         RuntimeException.class
     })
-    protected ResponseEntity<Object> handleInternal(
-        Exception ex, WebRequest request) {
+    public ResponseEntity<Object> handleInternal(
+            Exception ex, WebRequest request) {
         HttpStatus status = HttpStatus.INTERNAL_SERVER_ERROR;
         log.info(ex.getMessage());
         return createResponseEntity( new ApiErrorMessage(status, List.of(ex.getMessage())),
@@ -63,7 +63,7 @@ public class CustomExceptionHandler extends ResponseEntityExceptionHandler {
     @ExceptionHandler(value = {
             PaymentNotFoundException.class
     })
-    protected ResponseEntity<Object> paymentNotFoundException(
+    public ResponseEntity<Object> paymentNotFoundException(
             Exception ex, WebRequest request) {
         HttpStatus status = HttpStatus.NOT_FOUND;
         log.info(ex.getMessage());
@@ -74,7 +74,7 @@ public class CustomExceptionHandler extends ResponseEntityExceptionHandler {
     @ExceptionHandler(value = {
             MercadoPagoIntegrationException.class
     })
-    protected ResponseEntity<Object> mercadoPagoIntegrationException(
+    public ResponseEntity<Object> mercadoPagoIntegrationException(
             Exception ex, WebRequest request) {
         HttpStatus status = HttpStatus.SERVICE_UNAVAILABLE;
         log.info(ex.getMessage());
@@ -86,8 +86,8 @@ public class CustomExceptionHandler extends ResponseEntityExceptionHandler {
         NoSuchElementException.class,
         ResourceNotFound.class
     })
-    protected ResponseEntity<Object> handleNotFound(
-        Exception ex, WebRequest request) {
+    public ResponseEntity<Object> handleNotFound(
+            Exception ex, WebRequest request) {
         HttpStatus status = HttpStatus.NOT_FOUND;
 
         return createResponseEntity( new ApiErrorMessage(status, List.of(ex.getMessage())),

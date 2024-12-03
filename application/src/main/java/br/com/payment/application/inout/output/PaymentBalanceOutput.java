@@ -12,8 +12,9 @@ public record PaymentBalanceOutput(
 
         BigDecimal amount,
 
-        String cpf,
+        String identification,
 
         StatusPayment status,
 
-        String paymentAt){}
+        String paymentAt,
+        String order){}

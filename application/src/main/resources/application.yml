@@ -1,6 +1,11 @@
 spring:
   mongodb:
     uri: ${SPRING_DATA_MONGODB_URI:jdbc:postgresql://localhost:27017/restaurant?useSSL=false}
+  rabbitmq:
+    host: ${RABBIT_HOST:localhost}
+    port: 5672
+    username: ${RABBIT_USER:ulysses}
+    password: ${RABBIT_PASSWORD:senha123}
 springdoc:
   api-docs:
     enabled: 'true'

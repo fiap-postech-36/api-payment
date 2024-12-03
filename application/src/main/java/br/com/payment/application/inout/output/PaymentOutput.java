@@ -12,8 +12,9 @@ public record PaymentOutput(
 
         BigDecimal amount,
 
-        String cpf,
+        String identification,
 
         String qrCode,
 
-        StatusPayment status){}
+        StatusPayment status,
+        String order){}
