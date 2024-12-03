@@ -3,9 +3,7 @@ kind: ConfigMap
 metadata:
   name: api-configmap
 data:
-  SPRING_DATASOURCE_URL: "jdbc:postgresql://svc-db:27017/restaurant"
-  SPRING_DATASOURCE_USERNAME: "postgres"
-  SPRING_DATASOURCE_PASSWORD: "postgres"
+  uri: ${SPRING_DATA_MONGODB_URI:jdbc:postgresql://localhost:27017/restaurant?useSSL=false}
   RABBIT_HOST: "af4b45659baf047e49724279ab7d29eb-1909975876.us-east-1.elb.amazonaws.com"
   RABBIT_USER: "fiap"
   RABBIT_PASSWORD: "GpP36_Fiap@2024!"
