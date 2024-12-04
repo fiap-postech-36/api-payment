@@ -1,7 +1,7 @@
 spring:
   data:
     mongodb:
-      uri: ${SPRING_DATA_MONGODB_URI:mongodb://localhost:27017/restaurant}
+      uri: mongodb://fiap@GpP36_Fiap2024!:27017/restaurant
   rabbitmq:
     host: ${RABBIT_HOST:localhost}
     port: 5672
